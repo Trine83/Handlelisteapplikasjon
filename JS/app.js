@@ -4,14 +4,14 @@ const todosListEl = document.getElementById('todos-list');
 const notificationEl = document.querySelector('.notification');
 
 
-// VARS
+// lets
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
 let EditTodoId = -1;
 
-// 1st render
+// første 
 renderTodos();
 
-// FORM SUBMIT
+// FORM 
 form.addEventListener('submit', function (event) {
   event.preventDefault();
 
@@ -20,14 +20,14 @@ form.addEventListener('submit', function (event) {
   localStorage.setItem('todos', JSON.stringify(todos));
 });
 
-// SAVE TODO
+// Lagre todo
 function saveTodo() {
   const todoValue = todoInput.value;
 
-  // check if the todo is empty
+  // sjekk om den er tom
   const isEmpty = todoValue === '';
 
-  // check for duplicate todos
+  // Sjekk om den fordobler seg
   const isDuplicate = todos.some((todo) => todo.value.toUpperCase() === todoValue.toUpperCase());
 
   if (isEmpty) {
@@ -53,17 +53,17 @@ function saveTodo() {
   }
 }
 
-// RENDER TODOS
+// gjengi TODOS
 function renderTodos() {
   if (todos.length === 0) {
     todosListEl.innerHTML = '<center>Ingenting å gjøre?</center>';
     return;
   }
 
-  // CLEAR ELEMENT BEFORE A RE-RENDER
+  // fjern før gjengi
   todosListEl.innerHTML = '';
 
-  // RENDER TODOS
+  // gjengi TODOS
   todos.forEach((todo, index) => {
     todosListEl.innerHTML += `
     <div class="todo" id=${index}>
@@ -116,12 +116,12 @@ function editTodo(todoId) {
   EditTodoId = todoId;
 }
 
-// DELETE TODO
+// slette TODO
 function deleteTodo(todoId) {
   todos = todos.filter((todo, index) => index !== todoId);
   EditTodoId = -1;
 
-  // re-render
+  // gjengi
   renderTodos();
   localStorage.setItem('todos', JSON.stringify(todos));
 }
